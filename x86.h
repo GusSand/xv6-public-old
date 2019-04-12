@@ -125,9 +125,9 @@ hlt(void)
 
 static inline unsigned long long rdtsc(void)
 {
-    unsigned long long ret;
-    asm volatile ( "rdtsc" : "=A"(ret) );
-    return ret;
+	unsigned long long ret;
+	asm volatile ("rdtsc" : "=A"(ret));
+	return ret;
 }
 
 static inline uint

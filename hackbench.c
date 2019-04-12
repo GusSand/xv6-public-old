@@ -295,7 +295,7 @@ int main(int argc, char *argv[])
   //gettimeofday(&start, NULL);
   start = rdtsc();
   if(DEBUG) printf(STDOUT, "Start Watching Time ...\n");
-  
+
 
   /* Kick them off */
   if (write(wakefds[1], &dummy, 1) != 1)
@@ -311,7 +311,7 @@ int main(int argc, char *argv[])
     //if (!WIFEXITED(status))
     //  exit();
   }
-  
+
   stop = rdtsc();
   if(DEBUG) printf(STDOUT, "Stop Watching Time ...\n");
   diff = stop - start;

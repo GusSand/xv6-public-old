@@ -47,17 +47,6 @@ printint(int xx, int base, int sign)
   while(--i >= 0)
     consputc(buf[i]);
 }
-
-static void
-printlong(unsigned long long xx, int base, int sgn)
-{
-    // Force hexadecimal
-    uint upper, lower;
-    upper = xx >> 32;
-    lower = xx & 0xffffffff;
-    if(upper) printint(upper, 16, 0);
-    printint(lower, 16, 0);
-}
 //PAGEBREAK: 50
 
 // Print to the console. only understands %d, %x, %p, %s.
@@ -88,12 +77,6 @@ cprintf(char *fmt, ...)
     case 'd':
       printint(*argp++, 10, 1);
       break;
-    case 'l':
-        printlong(*(unsigned long long *)argp, 10, 0);
-        // long longs take up 2 argument slots
-        argp++;
-        argp++;
-        break;
     case 'x':
     case 'p':
       printint(*argp++, 16, 0);

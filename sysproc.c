@@ -61,7 +61,7 @@ sys_sleep(void)
 {
   int n;
   uint ticks0;
-  
+
   if(argint(0, &n) < 0)
     return -1;
   acquire(&tickslock);
@@ -83,7 +83,7 @@ int
 sys_uptime(void)
 {
   uint xticks;
-  
+
   acquire(&tickslock);
   xticks = ticks;
   release(&tickslock);
@@ -96,5 +96,20 @@ sys_gettime(void) {
   if (argptr(0, (char **)&d, sizeof(struct rtcdate)) < 0)
       return -1;
   cmostime(d);
+  return 0;
+}
+
+int
+sys_settickets(void)
+{
+  int ticket;
+  if(argint(0,&ticket)<0)
+  {
+    proc->tickets = 20;  //default
+  }
+//  if(argint(0,&ticket)>=0)
+  else {
+    proc->tickets = ticket;
+  }
   return 0;
 }
